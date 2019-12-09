@@ -101,13 +101,15 @@ public class GameActivity extends FragmentActivity {
             int before = game.zombieMarkers.size();
             game.cureZombie(currentLocation);
             int after = game.zombieMarkers.size();
-            if (game.spray == 0) {
+            if (game.playerState == 0) {
+                gameOver();
+            } else if (game.spray == 0) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setTitle("Oops");
                 builder.setMessage("Do not have the spray to cure.");
                 builder.setNegativeButton("Back", null);
                 builder.create().show();
-            } else if (before == after) {
+            }  else if (before == after) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setTitle("Oops");
                 builder.setMessage("Not close enough to cure.");
@@ -266,7 +268,12 @@ public class GameActivity extends FragmentActivity {
 
     private void gameOver() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Game Over.");
+        builder.setTitle("Game Over.");
+        if (game.playerState == 0) {
+            builder.setMessage("You are infected.");
+        } else {
+            builder.setMessage("Time out.");
+        }
         builder.setNegativeButton("Back", (unused1, unused2) -> {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);

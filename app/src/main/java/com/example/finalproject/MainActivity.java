@@ -24,7 +24,13 @@ public class MainActivity extends AppCompatActivity {
         gameRule.setOnClickListener(unused -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Game Rule");
-            builder.setMessage("I don't know what to say yet.");
+            builder.setMessage("Walk around and get to cure some zombies.\nYou need sprays to cure the zombies." +
+                    "The blue marker represents the sprays. Once you get within the range of 15 meters of it, you can" +
+                    "obtain the spray. The red markers represent the zombies. To cure the zombies, you need to get " +
+                    "within the range of 15 meters of them and press cure button if you have sprays. Also, be aware " +
+                    "that once you get too close to them (within the range of 10 meters) you are infected and the " +
+                    "game is over.\nYou can set the time of the game, the region of the game, and the number of zombies " +
+                    "by yourself.\nIf you cure all the zombies within the game time, you win. Once the time is out, the game is over.");
             builder.setNegativeButton("Back", null);
             builder.create().show();
         });

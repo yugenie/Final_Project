@@ -22,7 +22,9 @@ public class Game {
     private int gameTime;
     private int zombieNumber;
     public int spray = 0;
-    private int range = 5;
+    private int range = 15;
+    private int safeRange = 10;
+    public int playerState = 1;
 
     private LatLng sprayLatlng;
     private Marker sprayMarker;
@@ -107,6 +109,9 @@ public class Game {
             zombieLocation.setLatitude(zombie.latitude);
             zombieLocation.setLongitude(zombie.longitude);
             double distance = l.distanceTo(zombieLocation);
+            if (distance <= safeRange) {
+                playerState = 0;
+            }
             if (distance <= range && spray != 0) {
                 marker.remove();
                 spray--;
