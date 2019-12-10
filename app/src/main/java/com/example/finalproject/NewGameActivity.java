@@ -22,7 +22,7 @@ public class NewGameActivity extends AppCompatActivity {
     public GoogleMap gameMap;
     public int gameTime;
     public int zombieNumber;
-    public static LatLngBounds bounds;
+    public LatLngBounds bounds;
 
     private FusedLocationProviderClient fusedLocationClient;
     private Location currentLocation;
@@ -66,10 +66,22 @@ public class NewGameActivity extends AppCompatActivity {
             zombieNumber = Integer.parseInt(getZombieNumber);
 
             bounds = gameMap.getProjection().getVisibleRegion().latLngBounds;
+            LatLng southwest = bounds.southwest;
+            LatLng northeast = bounds.northeast;
+            double south = southwest.latitude;
+            double west = southwest.longitude;
+            double north = northeast.latitude;
+            double east = northeast.longitude;
 
             Intent intent = new Intent(this, GameActivity.class);
             intent.putExtra("gameTime", gameTime);
             intent.putExtra("zombieNumber", zombieNumber);
+
+            intent.putExtra("south", south);
+            intent.putExtra("west", west);
+            intent.putExtra("north", north);
+            intent.putExtra("east", east);
+
             startActivity(intent);
             finish();
         }
