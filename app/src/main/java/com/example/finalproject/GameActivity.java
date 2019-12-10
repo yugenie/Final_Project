@@ -49,8 +49,8 @@ import java.util.List;
 public class GameActivity extends FragmentActivity {
 
     private GoogleMap gameMap;
-    public static int gameTime = NewGameActivity.gameTime;
-    public static int zombieNumber = NewGameActivity.zombieNumber;
+    public int gameTime;
+    public int zombieNumber;
     public static LatLngBounds bounds = NewGameActivity.bounds;
     private Game game;
 
@@ -79,6 +79,9 @@ public class GameActivity extends FragmentActivity {
             centerMap(gameMap);
             setUpGame();
         });
+
+        gameTime = getIntent().getIntExtra("gameTime", 0);
+        zombieNumber = getIntent().getIntExtra("zombieNumber", 0);
 
         // Android only allows location access to apps that asked for it and had the request approved by the user
         // See if we need to make a request

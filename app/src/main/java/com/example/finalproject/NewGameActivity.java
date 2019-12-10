@@ -20,8 +20,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 public class NewGameActivity extends AppCompatActivity {
 
     public GoogleMap gameMap;
-    public static int gameTime;
-    public static int zombieNumber;
+    public int gameTime;
+    public int zombieNumber;
     public static LatLngBounds bounds;
 
     private FusedLocationProviderClient fusedLocationClient;
@@ -68,6 +68,8 @@ public class NewGameActivity extends AppCompatActivity {
             bounds = gameMap.getProjection().getVisibleRegion().latLngBounds;
 
             Intent intent = new Intent(this, GameActivity.class);
+            intent.putExtra("gameTime", gameTime);
+            intent.putExtra("zombieNumber", zombieNumber);
             startActivity(intent);
             finish();
         }
