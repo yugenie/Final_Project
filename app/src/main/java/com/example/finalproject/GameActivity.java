@@ -175,7 +175,7 @@ public class GameActivity extends FragmentActivity {
                     LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
                     System.out.println(location.getLatitude());
                     System.out.println(location.getLongitude());
-                    gameMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
+                    map.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
                 }
             }
         });
@@ -307,6 +307,7 @@ public class GameActivity extends FragmentActivity {
         builder.setMessage("You Win.");
         builder.setNegativeButton("Back", (unused1, unused2) -> {
             song.stop();
+            song.release();
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             finish();
