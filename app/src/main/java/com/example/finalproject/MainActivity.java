@@ -14,6 +14,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        setTitle("Infect.io");
+
         Button newGame = findViewById(R.id.newGame);
         Intent intent = new Intent(this, NewGameActivity.class);
         newGame.setOnClickListener(unused -> {
